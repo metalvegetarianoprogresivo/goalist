@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock title %} | Goalist</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="/media/stylesheets/base.css">
+	<link rel="stylesheet" href="/media/stylesheets/skeleton.css">
+	<link rel="stylesheet" href="/media/stylesheets/layout.css">
+
+
+	<link rel="stylesheet" href="/media/stylesheets/estilos.css"> <!-- Mi CSS -->
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="/media/images/favicon.ico">
+	<link rel="apple-touch-icon" href="/media/images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/media/images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/media/images/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="sixteen columns"><hr /></div>
+		<div class="twelve columns">
+			{% block content %}
+				<p>No hay contenido que mostrar</p>
+     		{% endblock content %}
+		</div>
+		<div class="four columns justificar">
+			<h4>Busc... ¿para que?</h4>
+			<form action="/search">
+				<label for="regularInput">Buscar:</label>
+  				<input type="text" id="regularInput" placeholder="Busqueda..." name="s" value="{{searched}}" />
+			</form>
+			<hr />
+			<h4>Usuarios:</h4>
+			{% block usuarios %}
+				<p>No hay usuarios que mostrar...</p>
+			{% endblock usuarios %}
+		</div>
+		<hr />
+		<div class="doc-section" id="attribution">
+			<p class="remove-bottom"><small>Created by <a href="http://twitter.com/deov31">@DeOv31</a> and <a href="http://twitter.com/lordzero0000">@lordzero0000</a>, 2012 &copy;<br />
+			Uses <a href="http://www.getskeleton.com/">Skeleton</a>, created by <a href="http://www.davegamache.com">Dave Gamache</a>, 2011 &copy;. This works with Django. Tokemon Corp. & CherrySoft 2012 &copy;.</small></p>
+		</div>
+	</div><!-- container -->
+
+
+
+	<!-- JS
+	================================================== -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/media/javascripts/tabs.js"></script>
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

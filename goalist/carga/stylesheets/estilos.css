@@ -1,0 +1,41 @@
+.justificar
+{
+	text-align:justify;
+}
+.centrar
+{
+	text-align: center;
+}
+.derecha
+{
+	text-align: right;
+}
+.quitar_subrayado
+{
+	text-decoration:none;
+}
+.error
+{
+	color: #aa0000;
+}
+.logos
+{
+	border:1px dashed #a0a0a0;
+	padding: 5px;
+	border-radius:5px;
+	margin-right: 5px;
+}
+
+#avatar
+{
+	border:1px dashed #a0a0a0;
+	padding: 5px;
+	border-radius:5px;
+	margin-right: 5px;
+	float: left;
+}
+
+.clearfix
+{
+	clear: both;
+}

@@ -1,0 +1,21 @@
+{% extends 'skeleton.html' %}
+{% block title %}Lista: {{list.nombre}}{% endblock %}
+{% block content %}
+	<p><img src="/media/{{list.imagen_head}}" /></p>
+	<h3>{{list.nombre}}</h3>
+	<p>Lista creada por: <a href="/{{list.usuario}}">{{list.usuario}}</a></p>
+	<p>{{ list.tiempo_resgitro|date:"l, j F Y" }}</p>
+	<p>Contenido:</p>
+	<ul>
+	{% for elemento in goal %}
+	  <li><strong>{{elemento.nombre}}</strong></li>
+	{% endfor %}
+	</ul>
+{% endblock content %}
+{% block usuarios %}
+	<ul>
+	{% for elemento in usuarios %}
+		<li><a href="/{{elemento.username}}">{{elemento.username}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock usuarios %}

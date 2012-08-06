@@ -1,0 +1,23 @@
+{% extends 'skeleton.html' %}
+{% block title %}{{user.username}}{% endblock %}
+{% block content %}
+	<img src="/media/{{user_data.avatar}}" id="avatar" alt="Avatar" title="{{user.username}}" />
+	<h3>{{user.username}}</h3>
+	<p>{{user.email}}</p>
+	<p>{{user_data.bio}}</p>
+	<p><a href="{{user_data.website}}">{{user_data.website}}</a> | {{user_data.ubicacion}}</p>
+	<div class="clearfix"></div>
+	<br />
+	<ul>
+	{% for elemento in listas %}
+	  <li><strong><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_resgitro|date:"l, j F Y" }}</li>
+	{% endfor %}
+	</ul>
+{% endblock content %}
+{% block usuarios %}
+	<ul>
+	{% for elemento in usuarios %}
+		<li><a href="/{{elemento.username}}">{{elemento.username}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock usuarios %}

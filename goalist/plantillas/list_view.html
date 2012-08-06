@@ -1,0 +1,17 @@
+{% extends 'skeleton.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+	<h3>Listas mas populares:</h3>
+	<ul>
+	{% for elemento in list %}
+	  <li><strong><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_resgitro|date:"l, j F Y" }} by <a href="/{{elemento.usuario}}">{{elemento.usuario}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock content %}
+{% block usuarios %}
+	<ul>
+	{% for elemento in usuarios %}
+		<li><a href="/{{elemento.username}}">{{elemento.username}}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock usuarios %}
