@@ -1,4 +1,4 @@
-{% extends 'skeleton.html' %}
+{% extends 'goalist.html' %}
 {% block title %}{{user.username}}{% endblock %}
 {% block content %}
 	<img src="/media/{{user_data.avatar}}" id="avatar" alt="Avatar" title="{{user.username}}" />
@@ -7,17 +7,23 @@
 	<p>{{user_data.bio}}</p>
 	<p><a href="{{user_data.website}}">{{user_data.website}}</a> | {{user_data.ubicacion}}</p>
 	<div class="clearfix"></div>
-	<br />
-	<ul>
-	{% for elemento in listas %}
-	  <li><strong><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_resgitro|date:"l, j F Y" }}</li>
-	{% endfor %}
-	</ul>
 {% endblock content %}
-{% block usuarios %}
-	<ul>
-	{% for elemento in usuarios %}
-		<li><a href="/{{elemento.username}}">{{elemento.username}}</a></li>
-	{% endfor %}
-	</ul>
-{% endblock usuarios %}
+{% block after %}
+	<div class="eight columns justificar">
+		<h3>Listas:</h3>
+		<ul>
+			{% if listas.count > 0 %}
+				{% for elemento in listas %}
+				  <li><strong><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_registro|date:"l, j F Y" }}</li>
+				{% endfor %}
+			{% else %}
+				<p>Lista vacia.</p>
+			{% endif %}
+		</ul>
+	</div>
+	<hr />
+{% endblock after %}
+{% block aside %}
+	<h4>Folowers:</h4>
+	<p>No hay followers.</p>
+{% endblock aside %}

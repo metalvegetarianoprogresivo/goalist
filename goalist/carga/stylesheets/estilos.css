@@ -35,6 +35,13 @@
 	float: left;
 }
 
+.imagen
+{
+	border:1px dashed #a0a0a0;
+	padding: 5px;
+	border-radius:5px;
+}
+
 .clearfix
 {
 	clear: both;

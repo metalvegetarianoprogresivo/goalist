@@ -1,21 +1,25 @@
-{% extends 'skeleton.html' %}
+{% extends 'goalist.html' %}
 {% block title %}Lista: {{list.nombre}}{% endblock %}
 {% block content %}
-	<p><img src="/media/{{list.imagen_head}}" /></p>
+	{% if list.imagen_head %}
+		<p><img src="/media/{{list.imagen_head}}" alt="Imagen de Cabecera." /></p>
+	{% endif %}
 	<h3>{{list.nombre}}</h3>
-	<p>Lista creada por: <a href="/{{list.usuario}}">{{list.usuario}}</a></p>
-	<p>{{ list.tiempo_resgitro|date:"l, j F Y" }}</p>
+	<p>{{ list.tiempo_registro|date:"l, j F Y" }}</p>
 	<p>Contenido:</p>
 	<ul>
-	{% for elemento in goal %}
-	  <li><strong>{{elemento.nombre}}</strong></li>
-	{% endfor %}
+		{% if goal.count > 0 %}
+			{% for elemento in goal %}
+			  <li><strong>{{elemento.nombre}}</strong></li>
+			{% endfor %}
+		{% else %}
+			<p>Lista vacia.</p>
+		{% endif %}
 	</ul>
 {% endblock content %}
-{% block usuarios %}
-	<ul>
-	{% for elemento in usuarios %}
-		<li><a href="/{{elemento.username}}">{{elemento.username}}</a></li>
-	{% endfor %}
-	</ul>
-{% endblock usuarios %}
+{% block aside %}
+	<h5>¿Quien creo esta lista?</h5>
+	<p class="centrar"><img src="/media/{{usuario.avatar}}" alt="Avatar" title="{{list.username}}" class="imagen" /></p>
+	<h4><a href="/{{list.usuario}}">{{list.usuario}}</a></h4>
+	<p>{{usuario.bio}}</p>
+{% endblock aside %}

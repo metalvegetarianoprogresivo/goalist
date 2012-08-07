@@ -11,12 +11,11 @@ def inicio(request):
 def lista(request, id):
 	listas = get_object_or_404(Lista, pk=id)
 	goals = Goal.objects.filter(lista=id)
-	usuarios = User.objects.all()
-	return render_to_response('listas_view.html', {'list':listas, 'goal':goals, 'usuarios':usuarios})
+	usuario = Usuario.objects.get(user_id=listas.usuario)
+	return render_to_response('listas_view.html', {'list':listas, 'goal':goals, 'usuario':usuario})
 
 def usuario(request, user):
 	usuario = get_object_or_404(User, username=user)
 	listas = Lista.objects.filter(usuario=usuario.id)
 	user = get_object_or_404(Usuario, user_id=usuario.id)
-	usuarios = User.objects.all()
-	return render_to_response('user_view.html', {'user':usuario, 'listas':listas, 'usuarios':usuarios, 'user_data':user})
+	return render_to_response('user_view.html', {'user':usuario, 'listas':listas, 'user_data':user})
