@@ -1,0 +1,7 @@
+# Lines starting with '#' are considered comments.
+# Ignore any file named foo.txt.
+#foo.txt
+# Ignore (generated) html files,
+*.jpg
+*.png
+# except foo.html which is maintained by hand.

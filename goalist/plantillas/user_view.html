@@ -1,7 +1,7 @@
 {% extends 'goalist.html' %}
 {% block title %}{{user.username}}{% endblock %}
 {% block content %}
-	<img src="/media/{{user_data.avatar}}" id="avatar" alt="Avatar" title="{{user.username}}" />
+	<img src="{{avatar.url}}" id="avatar" alt="Avatar" title="{{user_data.user}}" />
 	<h3>{{user.username}}</h3>
 	<p>{{user.email}}</p>
 	<p>{{user_data.bio}}</p>
@@ -11,19 +11,44 @@
 {% block after %}
 	<div class="eight columns justificar">
 		<h3>Listas:</h3>
-		<ul>
-			{% if listas.count > 0 %}
+		
+		{% if listas.count > 0 %}
+			<ul>
 				{% for elemento in listas %}
 				  <li><strong><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_registro|date:"l, j F Y" }}</li>
 				{% endfor %}
-			{% else %}
-				<p>Lista vacia.</p>
-			{% endif %}
-		</ul>
+			</ul>
+		{% else %}
+			<p>No hay listas.</p>
+		{% endif %}
 	</div>
 	<hr />
 {% endblock after %}
 {% block aside %}
-	<h4>Folowers:</h4>
-	<p>No hay followers.</p>
+	<h4>Following:</h4>
+	{% if user_data.follows.all.count > 0 %}
+		<ul>
+			{% for elemento in user_data.follows.all %}
+			  {% load thumbnail %}
+			  {% thumbnail elemento.avatar.url "50x50" crop="center" as im %}
+			    <a href="/{{elemento.user}}" title="{{elemento.bio}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /></a>
+			  {% endthumbnail %}
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No hay followers.</p>
+	{% endif %}
+	<h4>Followers:</h4>
+	{% if followers.count > 0 %}
+		<ul>
+			{% for elemento in followers %}
+			  {% load thumbnail %}
+			  {% thumbnail elemento.avatar.url "50x50" crop="center" as im %}
+			    <a href="/{{elemento.user}}" title="{{elemento.bio}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /></a>
+			  {% endthumbnail %}
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No hay followers.</p>
+	{% endif %}
 {% endblock aside %}

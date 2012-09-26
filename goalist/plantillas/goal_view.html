@@ -1,0 +1,22 @@
+{% extends 'goalist.html' %}
+{% block title %}Goal: {{goal.nombre}}{% endblock %}
+{% block content %}
+	<h3>{{goal.nombre}}</h3>
+	<p>{{ goal.tiempo_registro|date:"l, j F Y" }}</p>
+	<hr />
+	<h5>Listas que tienen esta Goal:</h5>
+	<ul>
+		{% for elemento in listas %}
+			<li><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock content %}
+{% block aside %}
+	<h5>Usuarios con este Goal:</h5>
+	{% for elemento in usuarios %}
+		{% load thumbnail %}
+		{% thumbnail elemento.avatar.url "50x50" crop="center" as im %}
+			<a href="/{{elemento.user}}" title="{{elemento.bio}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /></a>
+		{% endthumbnail %}
+	{% endfor %}
+{% endblock aside %}

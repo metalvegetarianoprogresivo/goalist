@@ -6,19 +6,19 @@ from django.contrib import admin
 
 # Create your models here.
 
-class Lista(models.Model):
-	usuario = models.ForeignKey(User)
-	nombre = models.CharField(max_length=100, help_text='Nombre de la lista.')
-	imagen_head = models.ImageField(upload_to='headers', verbose_name='Headers', blank=True)
-	tiempo_registro = models.DateTimeField(auto_now=True)
+class Goal(models.Model):
+	nombre = models.CharField(max_length=50, help_text='Nombre de la goal.')
+	tiempo_resgitro = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
 		return self.nombre
 
-class Goal(models.Model):
-	nombre = models.CharField(max_length=50, help_text='Nombre de la goal.')
-	tiempo_resgitro = models.DateTimeField(auto_now=True)
-	lista = models.ForeignKey(Lista)
+class Lista(models.Model):
+	usuario = models.ForeignKey(User)
+	goals = models.ManyToManyField(Goal, related_name='goal', blank=True)
+	nombre = models.CharField(max_length=100, help_text='Nombre de la lista.')
+	imagen_head = models.ImageField(upload_to='headers', verbose_name='Headers', blank=True)
+	tiempo_registro = models.DateTimeField(auto_now=True)
 
 	def __unicode__(self):
 		return self.nombre
@@ -33,19 +33,8 @@ class Prueba(models.Model):
 	def __unicode__(self):
 		return self.goal
 
-class Usuario(models.Model):
-	user_id = models.ForeignKey(User)
-	bio = models.TextField(help_text='Biografia del usuario.', blank=True)
-	avatar = models.ImageField(upload_to='avatar', verbose_name='Avatar', blank=True)
-	website = models.CharField(max_length=100, help_text='Sitio Web.', blank=True)
-	ubicacion = models.CharField(max_length=100, help_text='Ubicación del usuario.', blank=True)
-
-	def __unicode__(self):
-		return self.bio
-
 admin.site.register(Lista)
 admin.site.register(Goal)
 admin.site.register(Prueba)
-admin.site.register(Usuario)
 
 admin.autodiscover()

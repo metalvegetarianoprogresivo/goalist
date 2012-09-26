@@ -2,15 +2,15 @@
 {% block title %}Lista: {{list.nombre}}{% endblock %}
 {% block content %}
 	{% if list.imagen_head %}
-		<p><img src="/media/{{list.imagen_head}}" alt="Imagen de Cabecera." /></p>
+		<p><img src="{{list.imagen_head.url}}" alt="Imagen de Cabecera." /></p>
 	{% endif %}
 	<h3>{{list.nombre}}</h3>
 	<p>{{ list.tiempo_registro|date:"l, j F Y" }}</p>
 	<p>Contenido:</p>
 	<ul>
-		{% if goal.count > 0 %}
-			{% for elemento in goal %}
-			  <li><strong>{{elemento.nombre}}</strong></li>
+		{% if list.goals.all.count > 0 %}
+			{% for elemento in list.goals.all %}
+			  <li><strong><a href="/goal/{{elemento.id}}">{{elemento.nombre}}</a></strong></li>
 			{% endfor %}
 		{% else %}
 			<p>Lista vacia.</p>
@@ -19,7 +19,10 @@
 {% endblock content %}
 {% block aside %}
 	<h5>¿Quien creo esta lista?</h5>
-	<p class="centrar"><img src="/media/{{usuario.avatar}}" alt="Avatar" title="{{list.username}}" class="imagen" /></p>
-	<h4><a href="/{{list.usuario}}">{{list.usuario}}</a></h4>
+	{% load thumbnail %}
+	{% thumbnail usuario.avatar.url "200x200" crop="center" as im %}
+		<p class="centrar"><a href="/{{usuario.user}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="Avatar" title="{{usuario.user}}" class="imagen" /></a></p>
+	{% endthumbnail %}
+	<h4><a href="/{{usuario.user}}">{{usuario.user}}</a></h4>
 	<p>{{usuario.bio}}</p>
 {% endblock aside %}
