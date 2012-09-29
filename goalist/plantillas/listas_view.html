@@ -10,7 +10,7 @@
 	<ul>
 		{% if list.goals.all.count > 0 %}
 			{% for elemento in list.goals.all %}
-			  <li><strong><a href="/goal/{{elemento.id}}">{{elemento.nombre}}</a></strong></li>
+			  <li><strong><a href="{% url goal elemento.id %}">{{elemento.nombre}}</a></strong></li>
 			{% endfor %}
 		{% else %}
 			<p>Lista vacia.</p>

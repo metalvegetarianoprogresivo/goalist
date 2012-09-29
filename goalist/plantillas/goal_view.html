@@ -7,7 +7,7 @@
 	<h5>Listas que tienen esta Goal:</h5>
 	<ul>
 		{% for elemento in listas %}
-			<li><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></li>
+			<li><a href="{% url lista elemento.id %}">{{elemento.nombre}}</a></li>
 		{% endfor %}
 	</ul>
 {% endblock content %}
@@ -16,7 +16,7 @@
 	{% for elemento in usuarios %}
 		{% load thumbnail %}
 		{% thumbnail elemento.avatar.url "50x50" crop="center" as im %}
-			<a href="/{{elemento.user}}" title="{{elemento.bio}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /></a>
+			<a href="/{{elemento.user}}" class="tooltip"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /><span class="classic"><strong>{{elemento.user}}:</strong> {{elemento.bio}}</span></a>
 		{% endthumbnail %}
 	{% endfor %}
 {% endblock aside %}

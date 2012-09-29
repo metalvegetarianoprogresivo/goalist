@@ -1,0 +1,16 @@
+{% extends 'goalist.html' %}
+{% block title %}Registrar nuevo usuario{% endblock %}
+{% block content %}
+	<h3>Usuario</h3>
+	<form action="{% url register %}" method="post">{% csrf_token %}
+		{{ form.non_field_errors }}
+		<p>Nombre de usuario: {{ form.username }}{{ form.username.errors }}</p>
+		<p>Email: {{ form.email }}{{ form.email.errors }}</p>
+		<p>Contraseña: {{ form.password }}{{ form.password.errors }}</p>
+		<p><input type="submit" value="Registrar" /></p>
+	</form>
+{% endblock content %}
+{% block aside %}
+	<h5>¿Goalist?</h5>
+	<p>Lorem</p>
+{% endblock aside %}

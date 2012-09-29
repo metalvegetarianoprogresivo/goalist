@@ -15,7 +15,7 @@
 		{% if listas.count > 0 %}
 			<ul>
 				{% for elemento in listas %}
-				  <li><strong><a href="/lista/{{elemento.id}}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_registro|date:"l, j F Y" }}</li>
+				  <li><strong><a href="{% url lista elemento.id %}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_registro|date:"l, j F Y" }}</li>
 				{% endfor %}
 			</ul>
 		{% else %}
@@ -31,7 +31,7 @@
 			{% for elemento in user_data.follows.all %}
 			  {% load thumbnail %}
 			  {% thumbnail elemento.avatar.url "50x50" crop="center" as im %}
-			    <a href="/{{elemento.user}}" title="{{elemento.bio}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /></a>
+			    <a href="/{{elemento.user}}" class="tooltip"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /><span class="classic"><strong>{{elemento.user}}:</strong> {{elemento.bio}}</span></a>
 			  {% endthumbnail %}
 			{% endfor %}
 		</ul>
@@ -44,7 +44,7 @@
 			{% for elemento in followers %}
 			  {% load thumbnail %}
 			  {% thumbnail elemento.avatar.url "50x50" crop="center" as im %}
-			    <a href="/{{elemento.user}}" title="{{elemento.bio}}"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /></a>
+			    <a href="/{{elemento.user}}" class="tooltip"><img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="follow_avatar" /><span class="classic"><strong>{{elemento.user}}:</strong> {{elemento.bio}}</span></a>
 			  {% endthumbnail %}
 			{% endfor %}
 		</ul>

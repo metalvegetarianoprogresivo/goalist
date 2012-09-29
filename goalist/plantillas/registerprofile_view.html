@@ -1,0 +1,17 @@
+{% extends 'goalist.html' %}
+{% block title %}Perfil de {{user.username}}{% endblock %}
+{% block content %}
+	<h3>Usuario</h3>
+	<form action="{% url registerProfile user.username %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+		{{ form.non_field_errors }}
+		<p>Avatar: {{ form.avatar }}{{ form.avatar.errors }}</p>
+		<p>Biografia: {{ form.bio }}{{ form.bio.errors }}</p>
+		<p>Sitio Web: {{ form.website }}{{ form.website.errors }}</p>
+		<p>Ubicación: {{ form.place }}{{ form.place.errors }}</p>
+		<p><input type="submit" value="Registrar" /></p>
+	</form>
+{% endblock content %}
+{% block aside %}
+	<h5>¿Goalist?</h5>
+	<p>Lorem</p>
+{% endblock aside %}

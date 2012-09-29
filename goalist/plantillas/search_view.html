@@ -1,15 +1,17 @@
 {% extends 'skeleton.html' %}
-{% block title %}Inicio{% endblock %}
+{% block title %}Buacando: {{keyword}}{% endblock %}
 {% block content %}
-	<h3>Listas mas populares:</h3>
-	<ul>
-	{% for elemento in list %}
-	  <li><strong><a href="{% url lista elemento.id %}">{{elemento.nombre}}</a></strong> | {{ elemento.tiempo_resgitro|date:"l, j F Y" }} by <a href="/{{elemento.usuario}}">{{elemento.usuario}}</a></li>
-	{% endfor %}
-	</ul>
+	{% if goals.count > 0 %}
+		<h4>Busqueda para '{{keyword}}':</h4>
+		{% for elemento in goals %}
+		  <p><strong><a href="{% url goal elemento.id %}">{{elemento.nombre}}</a></strong></p>
+		{% endfor %}
+	{% else %}
+		<p>No se encontro nada que coinsida con: '{{keyword}}'.</p>
+	{% endif %}
 {% endblock content %}
 {% block usuarios %}
-	<h4>Usuarios destacados:</h4>
+	<h4>Usuarios relacionados:</h4>
 	{% if usuarios.count > 0 %}
 		{% for elemento in usuarios %}
 			{% load thumbnail %}
@@ -18,6 +20,6 @@
 			{% endthumbnail %}
 		{% endfor %}
 	{% else %}
-		<p>No hay usuarios...<h4>Usuarios:</h4></p>
+		<p>No se encontraron usuarios que tengan una Goal parecida a '{{keyword}}'.</p>
 	{% endif %}
 {% endblock usuarios %}

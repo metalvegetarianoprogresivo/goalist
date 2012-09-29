@@ -1,6 +1,15 @@
 # Goalist Project
 
-### 65 de Agosto de 2012 ###
+### 28 de Septiembre ###
+- Se agrego el registro de usuarios.
+
+### 26 de Septiembre ###
+- Se creo un sistema de seguidores.
+- Se agrego el thumbnail del avatar del usuario.
+- Se agrego en la vista de perfil de usuario, quien sigue a quien lo sigue.
+- En la vista de la Goal se muestra las Listas que la contienen así como los usuarios que tienen dicha goal.
+
+### 15 de Agosto de 2012 ###
 
 - Se mejoro la interfaz del usuario.
 - Se mejoro la interfaz de listas.

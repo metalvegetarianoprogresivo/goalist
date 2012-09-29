@@ -18,12 +18,14 @@
 
 	<!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="/media/stylesheets/base.css">
-	<link rel="stylesheet" href="/media/stylesheets/skeleton.css">
-	<link rel="stylesheet" href="/media/stylesheets/layout.css">
+  	{% load static %}
+	{% get_media_prefix  as MEDIA_URL %}
+	<link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/base.css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/skeleton.css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/layout.css">
 
 
-	<link rel="stylesheet" href="/media/stylesheets/estilos.css"> <!-- Mi CSS -->
+	<link rel="stylesheet" href="{{ MEDIA_URL }}stylesheets/estilos.css"> <!-- Mi CSS -->
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,10 +33,10 @@
 
 	<!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="/media/images/favicon.ico">
-	<link rel="apple-touch-icon" href="/media/images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/media/images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/media/images/apple-touch-icon-114x114.png">
+	<link rel="shortcut icon" href="{{ MEDIA_URL }}images/favicon.ico">
+	<link rel="apple-touch-icon" href="{{ MEDIA_URL }}images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ MEDIA_URL }}images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ MEDIA_URL }}images/apple-touch-icon-114x114.png">
 
 </head>
 <body>
@@ -45,7 +47,7 @@
 	================================================== -->
 
 	<!-- Delete everything in this .container and get started on your own site! -->
-
+	<div id="newbar"><a href="{% url inicio %}">Inicio</a> | <a href="{% url register %}">Registrar</a></div>
 	<div class="container">
 		<div class="sixteen columns"><hr /></div>
 		<div class="twelve columns">
@@ -55,12 +57,11 @@
 		</div>
 		<div class="four columns justificar">
 			<h4>Busc... ¿para que?</h4>
-			<form action="/search">
+			<form action="/search" method="get">
 				<label for="regularInput">Buscar:</label>
-  				<input type="text" id="regularInput" placeholder="Busqueda..." name="s" value="{{searched}}" />
+  				<input type="text" id="regularInput" placeholder="Busqueda..." name="s" value="{{keyword}}" />
 			</form>
 			<hr />
-			<h4>Usuarios:</h4>
 			{% block usuarios %}
 				<p>No hay usuarios que mostrar...</p>
 			{% endblock usuarios %}
